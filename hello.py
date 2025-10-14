@@ -278,6 +278,63 @@ print(tuple(a))
 
 '''
 
+'''
+
+from contextlib import contextmanager
+
+@contextmanager
+def tag(name):
+    print(f"<{name}>")
+    yield
+    print(f"</{name}>")
+
+with tag("h1"):
+    print("这是一个标题")
+
+'''
+
+'''
+
+class Timer:
+    def _enter_(self):
+        import time
+        self.start = time.time()
+        return self
+    def _exit_(self, exc_type, exc_val, exc_tb):
+        import time
+        self.end = time.time()
+        print(f"耗时：{self.end - self.start:.2f}秒")
+        return False
+
+with Timer() as t:
+    sum(range(1000000))
+
+'''
+
+'''
+
+def change(a):
+    print(f"函数内 a 的地址：{id(a)}")
+    a = 10
+    print(f"函数内修改 a 的值之后 a 的地址：{id(a)}")
+
+a = 1
+print(f"主程序中 a 的地址：{id(a)}")
+change(a)
+print(a)
+
+'''
+
+# 牛马关键字参数
+def printinfo(name, age):
+    print("名字：", name)
+    print("年龄：", age)
+    return 
+
+printinfo(age = 50, name = "runoob")
+
+
+
 
 
 
