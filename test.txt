@@ -1,0 +1,2 @@
+Python 是一个非常好的解释型语言。
+Yes, it's really good！
