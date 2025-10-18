@@ -117,6 +117,32 @@ for x in range(1, 11):
     print(repr(x*x*x).rjust(4))
 
 ''' 
+
+'''
+
 import os
 path_direcotry = os.getenv("PATH")
 print("PATH 环境变量：", path_direcotry)
+
+'''
+
+'''
+
+while True:
+    try:
+        int(input("请输入一个数字："))
+        break
+    except ValueError: 
+        print("您输入的不是数字，请再次尝试输入！")
+
+'''
+
+def this_fails():
+    x = 1 / 0
+
+try:
+    this_fails()
+except ZeroDivisionError as err:
+    print('Handling run-time error: ', err)
+
+print("hello, this program was interpretedly executed here.")

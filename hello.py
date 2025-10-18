@@ -293,14 +293,14 @@ with tag("h1"):
 
 '''
 
-'''
+# '''
 
 class Timer:
-    def _enter_(self):
+    def __enter__(self):
         import time
         self.start = time.time()
         return self
-    def _exit_(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, exc_tb):
         import time
         self.end = time.time()
         print(f"耗时：{self.end - self.start:.2f}秒")
@@ -309,7 +309,7 @@ class Timer:
 with Timer() as t:
     sum(range(1000000))
 
-'''
+# '''
 
 '''
 
@@ -325,6 +325,8 @@ print(a)
 
 '''
 
+'''
+
 # 牛马关键字参数
 def printinfo(name, age):
     print("名字：", name)
@@ -332,6 +334,8 @@ def printinfo(name, age):
     return 
 
 printinfo(age = 50, name = "runoob")
+
+'''
 
 
 

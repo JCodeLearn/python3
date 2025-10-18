@@ -14,6 +14,9 @@ with open("./test.txt", 'r') as book:
         print(line, end='')
 
 '''
+
+'''
+
 with open('./foo.txt', 'w') as x:
     pass
 
@@ -23,4 +26,6 @@ with open('./foo.txt', 'rb+') as f:
     print(f.read(1))
     f.seek(-3, 2)
     print(f.read(1))
+
+'''
 
