@@ -1,0 +1,2 @@
+numpy==2.3.4
+package_name==0.1

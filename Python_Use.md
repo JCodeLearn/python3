@@ -1,4 +1,4 @@
-# Python3
+`# Python3
 
 ### 模块的导入方式
 * 模块 <br />
@@ -57,3 +57,36 @@
 
 ### python 文件操作
 ![FileOperationInPython](Python_Use_media/FileOperationInPython.png)
+
+### python 虚拟环境创建
+* 创建流程（以开发 Django 项目为例）
+        ```bash
+        # 本机上，还有如下预操作
+        # sudo apt install python3.12-venv
+        # 创建环境并激活
+        python3 -m venv .venv
+        source .venv/bin/activate
+
+        # 安装Django
+        (.venv) pip install django==3.2.12
+
+        # 创建Django项目
+        (.venv) django-admin startproject my_site
+
+        # 运行测试
+        (.venv) cd my_site
+        (.venv) python manage.py runserver
+
+        # 完成后退出环境
+        (.venv) deactivate
+        ```
+* 几条有趣的命令
+        * 虚拟环境下配置 pip 源 <br />
+        `pip install -i https://pypi.tuna.tsinghua.edu.cn/simple package_name`
+        * 安装 pip <br />
+        `sudo apt install python3-pip`
+        * 导出虚拟环境依赖 <br />
+        `pip freeze > requirements.txt`
+        * 从文件安装依赖
+        `pip install -r requirements.txt`
+
