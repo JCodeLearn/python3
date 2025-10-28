@@ -58,6 +58,18 @@
 ### python 文件操作
 ![FileOperationInPython](Python_Use_media/FileOperationInPython.png)
 
+```mermaid
+graph TD
+        A(Opening Files) --> B{For?}
+        B --> |Reading| C(r) 
+        B --> |Writing| D{Truncate?}
+        B --> |Reading and Writing| E{Truncate?}
+        C -.-> C1[Initial Position: Begining]
+        D --> |Yes| F{w}
+        D --> |No| G{a}
+         
+```
+
 ### python 虚拟环境创建
 * 创建流程（以开发 Django 项目为例）
         ```bash
