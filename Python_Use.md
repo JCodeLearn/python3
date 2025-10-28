@@ -55,18 +55,22 @@
 ### print 函数
 * print 函数在打印多个参数时，会默认在每个参数之间添加一个空格作为分隔。
 
-### python 文件操作
-![FileOperationInPython](Python_Use_media/FileOperationInPython.png)
 
+### python 文件操作
 ```mermaid
 graph TD
         A(Opening Files) --> B{For?}
         B --> |Reading| C(r) 
+        C -.- C1[Initial Position: Begining]
         B --> |Writing| D{Truncate?}
         B --> |Reading and Writing| E{Truncate?}
-        C -.-> C1[Initial Position: Begining]
         D --> |Yes| F{w}
         D --> |No| G{a}
+        G -.- G1[Initial Position: End]
+        E --> |Yes| H(w+)
+        E --> |No| I{Initial Position}
+        I --> |Begin| J(r+)
+        I --> |End| K(a+)
          
 ```
 
