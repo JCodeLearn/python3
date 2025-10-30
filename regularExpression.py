@@ -23,7 +23,31 @@ print(type(re.match(pattern, string)))
 
 # test3
 
+"""
+
 pattern = re.compile(r'\d+')
 # print(pattern.search('one12twothree34four').group())
 string = 'one12twothree34four'
 print(type(re.findall(pattern, string)))
+
+
+"""
+
+# test4
+
+"""
+
+pattern = r"(\d+)"
+string = 'one12twothree34four'
+print(re.compile(pattern).findall(string))
+
+
+"""
+
+# test5
+
+pattern = r"\d+"
+string = 'one12twothree34four'
+it = re.compile(pattern).finditer(string)
+for match in it:
+    print(match.group())

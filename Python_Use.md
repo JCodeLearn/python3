@@ -125,5 +125,21 @@ python3 正则表达式通过引入模块 re 来实现，主要提供四种操�
       | re.compile(pattern[, flags].search(string[, pos[, endpos]])) | 所见即所得 | 所见即所得 |
       | re.compile(pattern[, flags].findall(string[, pos[, endpos]])) | 可以参考 re.findall 函数 | 可以参考 re.findall 函数 |
   * 需要匹配所有子串
-
+      | 函数 | 描述 | 作用 |
+      | :-: | :-: | :- |
+      | re.findall(pattern, string, flags=0) | 1. pattern 表示正则表达式模式 <br /> 2. string 表示待匹配的字符串 <br /> 3. flags 可选，表示修饰符 | 用于匹配所有满足指定正则表达式模式要求的所有子串。返回的结果是一个列表，如若没有匹配的子串，则返回一个空列表。当存在多个匹配模式，则返回元组列表。代码示例如下：<br /> <pre><code>import re<br />result = re.findall(r'(\w+)=(\d+)', 'set width=20 and height=10') <br />print(result)<br /># 此时的返回结果将为 [('width', '20'), ('height', '10')] </code></pre><pre><code>import re<br />result1 = re.findall(r'\d+', 'runoob 123 google 456')<br />pattern = re.compile(r'\d+')  # 查找数字<br />result2 = pattern.findall('runoob 123 google 456')<br />result3 = pattern.findall('run88oob123google456', 0, 10)<br />print(result1)<br />print(result2)<br />print(result3)<br /># 输出结果如下：<br /># ['123', '456']<br /># ['123', '456']<br /># ['88', '12']</code> </pre>|
+      | re.compile(pattern[, flags].findall(string[, pos[, endpos]])) | 可参考上述条目 | 可参考上述条目 |
+      | re.finditer(pattern, string, flags=0) | 参数情况同 re.findall(pattern, string, flags=0) | 和 findall 类似，在字符串中找到正则表达式所匹配的所有子串，并把它们作为一个迭代器返回。迭代器集合中的元素类型为 re.Match。 |
+      | re.compile(pattern[, flags].finditer(string[, pos[, endpos]])) | 可参考 re.compile(pattern[, flags].findall(string[, pos[, endpos]])) | 返回一个迭代器，迭代器集合中的元素类型为 re.Match。 |
+* 替换操作
+  * 函数作用<br />
+  用于替换原始字符串中所有匹配上的
+  * 函数原型<br />`re.sub(pattern, repl, string, count=0, flags=0)`，返回的类型为字符串。
+  * 参数介绍<br />
+    * pattern：正则表达式模式；
+    * repl：用于替换的字符串，也可以为一个函数；
+    * string：要被查找替换的原始字符串
+    * count：模式匹配后替换的最大次数，默认 0 表示替换所有的匹配；
+    * flags：编译时用的匹配模式，即修饰符。
+  * 
 
