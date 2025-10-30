@@ -107,3 +107,23 @@ graph TD
         `pip install -r requirements.txt`
 
 ### python3 正则表达式
+python3 正则表达式通过引入模块 re 来实现，主要提供四种操作：两种匹配操作，按匹配子串的个数来说，匹配操作既有可选的仅需匹配一次，也有可选的全部匹配；按匹配的原字符串范围来说，又分为 match 和 search 两类；按调用匹配的方式来看，又可以细化为两种方式。此外的操作还有：一种替换操作，一种分割操作。
+* 匹配操作
+  * 仅需匹配一个子串
+    * 调用 match 和 search 的方式一： 
+      | 函数 | 描述 | 作用 |
+      | :-: | :-: | :-: | 
+      | re.match(pattern, string, flags=0) | 1. pattern 表示正则表达式模式 <br /> 2. string 表示要匹配的字符串 <br /> 3. flags 标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等 | 该函数尝试从字符串的开始位置匹配一个模式，如果不是起始位置匹配成功的话， match() 就返回 None。如果匹配成功的话，则返回一个 re.Match 类对象。 |
+      | re.search(pattern, string, flags=0) | 同上一条目 | re.search 扫描整个字符串并返回第一个成功的匹配，即 re.Match 类对象，否则返回 None。 |
+    * 调用 match 和 search 的方式二：
+      | 函数 | 描述 | 作用 |
+      | :-: | :-: | :-: |
+      | re.compile(pattern[, flags]) | 1. pattern 表示正则表达式模式。 <br /> 2. flags 可选，表示修饰符。 | 会返回一个 re.Pattern 类对象，供 match(), search() 和 findall() 三个函数使用 |
+      | re.compile(pattern[, flags].match(string)) | string 为匹配的字符串 | 相当于调用 re.match，但是 flags 参数已经指定。 |
+      | re.compile(pattern[, flags].match(string, beginIndex, endIndex)) | beginIndex: 进行字符串匹配开始的位置；endIndex：进行字符串匹配结束的后一个位置 | 相当于在 string 的 [beginIndex, endIndex) 范围内进行 match 操作。 |
+      | re.compile(pattern[, flags].search(string)) | 所见即所得 | 所见即所得 |
+      | re.compile(pattern[, flags].search(string[, pos[, endpos]])) | 所见即所得 | 所见即所得 |
+      | re.compile(pattern[, flags].findall(string[, pos[, endpos]])) | 可以参考 re.findall 函数 | 可以参考 re.findall 函数 |
+  * 需要匹配所有子串
+
+

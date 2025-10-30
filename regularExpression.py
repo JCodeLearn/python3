@@ -12,6 +12,18 @@ print(re.search(pattern, string, flags=0))
 
 # test2
 
+"""
+
 pattern = r"\b(\w+)\b\s+\1\b"
 string = "hello hello hello hello hello"
 print(re.findall(pattern, string))
+print(type(re.match(pattern, string)))
+
+"""
+
+# test3
+
+pattern = re.compile(r'\d+')
+# print(pattern.search('one12twothree34four').group())
+string = 'one12twothree34four'
+print(type(re.findall(pattern, string)))
