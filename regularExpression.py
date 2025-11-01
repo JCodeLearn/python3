@@ -46,8 +46,36 @@ print(re.compile(pattern).findall(string))
 
 # test5
 
+"""
+
 pattern = r"\d+"
 string = 'one12twothree34four'
 it = re.compile(pattern).finditer(string)
 for match in it:
     print(match.group())
+
+"""
+
+# test6
+
+"""
+
+phone = "2004-959-999 # 这是一个电话号码"
+num = re.sub(r'#.*$', "", phone) 
+print(num)
+
+"""
+
+# test7 
+"""
+
+def double(matched):
+    value = int(matched.group('value'))
+    return str(value*2)
+
+s = 'A23G3HFD567'
+print(re.sub('(?P<value>\d+)', double, s))
+
+"""
+
+# print(type(re.compile(r"/w+")))

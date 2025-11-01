@@ -133,13 +133,72 @@ python3 正则表达式通过引入模块 re 来实现，主要提供四种操�
       | re.compile(pattern[, flags].finditer(string[, pos[, endpos]])) | 可参考 re.compile(pattern[, flags].findall(string[, pos[, endpos]])) | 返回一个迭代器，迭代器集合中的元素类型为 re.Match。 |
 * 替换操作
   * 函数作用<br />
-  用于替换原始字符串中所有匹配上的
+  用于替换原始字符串中所有匹配上的子串为其他字符串。
   * 函数原型<br />`re.sub(pattern, repl, string, count=0, flags=0)`，返回的类型为字符串。
   * 参数介绍<br />
     * pattern：正则表达式模式；
     * repl：用于替换的字符串，也可以为一个函数；
-    * string：要被查找替换的原始字符串
+    * string：要被查找替换为的其他字符串
     * count：模式匹配后替换的最大次数，默认 0 表示替换所有的匹配；
     * flags：编译时用的匹配模式，即修饰符。
-  * 
+  * 代码示例<br />
+    * 示例代码一：
+        ```python3
+        import re
+        phone = "2004-959-999 # 这是一个电话号码"
+        num = re.sub(r'#.*$', "", phone) 
+        print(num)
+        ```
+        运行结果：
+        ```bash
+        2004-959-999
+        ```
+    * 示例代码二：
+        ```python3
+        import re
+        def double(matched):
+        value = int(matched.group('value'))
+        return str(value*2)
 
+        s = 'A23G3HFD567'
+        print(re.sub('(?P<value>\d+)', double, s))
+        ```
+* 分隔操作
+  * 函数原型<br />
+  `re.split(pattern, string[, maxsplit=0, flags=0])`，函数返回对象是一个列表。
+  * 参数介绍<br />
+    * pattern：要匹配的正则表达式模式
+    * string：要匹配的字符串
+    * maxsplit：分割次数，maxsplit=1 分割一次，默认为0，不限制次数。
+    * flags：标志位，正则表达式修饰符
+  * 函数功能<br />
+    split 方法以能够匹配的子串作为分隔符，分割字符串，并将结果存放在一个列表中。
+  * 代码示例：
+      ```bash
+      >>>import re
+      >>> re.split('\W+', 'runoob, runoob, runoob.')
+      ['runoob', 'runoob', 'runoob', '']
+      >>> re.split('(\W+)', ' runoob, runoob, runoob.') 
+      ['', ' ', 'runoob', ', ', 'runoob', ', ', 'runoob', '.', '']
+      >>> re.split('\W+', ' runoob, runoob, runoob.', 1) 
+      ['', 'runoob, runoob, runoob.']
+      >>> re.split('a*', 'hello world')   # 对于一个找不到匹配的字符串而言，split 不会对其作出分割
+      ['hello world']
+      ```
+* 在这几类操作中，还有一些关联的类对象。现对常用的 re.Match 对象进行介绍。
+| 方法 | 描述 |
+| :-: | :-: |
+| group(num=0) | 参数 num=0 时，为匹配的整个表达式的字符串，如果指定 num 值，则为对应分组所捕获的子串。如果一次指定多个 num 值，则将返回一个包含那些组所对应值的分组。 |
+| groups() | 返回一个包含所有小组字符串的元组，从 1 到所含的小组号。 |
+| start([group]) | 方法用于获取分组匹配的子串在整个字符串中的起始位置（子串第一个字符的索引），参数默认值为 0，其中 [group] 为小组号。 |
+| end([group]) | 方法用于获取分组匹配的子串在整个字符串中的结束位置（子串最后一个字符的索引+1），参数默认值为 0。其中 [group] 为小组号。 |
+| span([group]) |  方法返回 (start(group), end(group))。其中 [group] 为小组号。 |
+* python 中的正则表达式修饰符
+
+| 修饰符 | 描述 |
+| :-: | :-: |
+| re.IGNORECASE 或 re.I | 使匹配对大小写不敏感 |
+| re.MULTILINE 或 re.M | 多行匹配，影响 \^ 和 \$， 使它们匹配字符串的每一行的开头和结尾。 |
+| re.DOTALL 或 re.S | 使 . 匹配包括换行符在内的任意字符。 |
+| re.ASCII | 使 \w, \W, \b, \B, \d, \D, \s, \S 仅匹配 ASCII 字符。 |
+| re.VERBOSE 或 re.X | 忽略空格和注释，可以更清晰地组织复杂的正则表达式。 |
